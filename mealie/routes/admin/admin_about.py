@@ -38,6 +38,7 @@ class AdminAboutController(BaseAdminController):
             oidc_provider_name=settings.OIDC_PROVIDER_NAME,
             enable_openai=settings.OPENAI_ENABLED,
             enable_openai_image_services=settings.OPENAI_ENABLED and settings.OPENAI_ENABLE_IMAGE_SERVICES,
+            proxy_auth_enabled=settings.PROXY_AUTH_ENABLED,
         )
 
     @router.get("/statistics", response_model=AppStatistics)

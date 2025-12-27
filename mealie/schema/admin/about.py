@@ -24,6 +24,7 @@ class AppInfo(MealieModel):
     enable_openai: bool
     enable_openai_image_services: bool
     token_time: int
+    proxy_auth_enabled: bool
 
 
 class AppTheme(MealieModel):
@@ -65,6 +66,7 @@ class AdminAboutInfo(AppInfo):
     default_household: str
     build_id: str
     recipe_scraper_version: str
+    proxy_auth_enabled: bool
 
 
 class CheckAppConfig(MealieModel):
