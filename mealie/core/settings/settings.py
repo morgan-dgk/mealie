@@ -384,6 +384,13 @@ class AppSettings(AppLoggingSettings):
         return self.OIDC_FEATURE.enabled
 
     # ===============================================
+    # Proxy Auth configuration
+
+    PROXY_AUTH_ENABLED: bool = False
+    REMOTE_USER_HEADER: str = "Remote-User"
+    REMOTE_EMAIL_HEADER: str | None = None
+
+    # ===============================================
     # OpenAI Configuration
 
     OPENAI_BASE_URL: str | None = None
