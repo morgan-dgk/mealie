@@ -289,6 +289,14 @@ export default defineNuxtComponent({
       { immediate: true },
     );
 
+    whenever(
+      () => $appInfo.proxyAuthEnabled && !isDirectLogin(),
+      () => {
+        authenticate({ isproxyAuthRequest: true });
+      },
+      { immediate: true },
+    );
+
     onBeforeMount(async () => {
       if (isCallback()) {
         await oidcAuthenticate(true);
@@ -322,16 +330,17 @@ export default defineNuxtComponent({
       }
     }
 
-    async function authenticate() {
-      if (form.email.length === 0 || form.password.length === 0) {
-        alert.error(i18n.t("user.please-enter-your-email-and-password"));
-        return;
-      }
+    async function authenticate({ isproxyAuthRequest } = { isproxyAuthRequest: false }) {
+      if (!isproxyAuthRequest)
+        if (form.email.length === 0 || form.password.length === 0) {
+          alert.error(i18n.t("user.please-enter-your-email-and-password"));
+          return;
+        }
 
       loggingIn.value = true;
       const formData = new FormData();
-      formData.append("username", form.email);
-      formData.append("password", form.password);
+      formData.append("username", isproxyAuthRequest ? "proxy" : form.email);
+      formData.append("password", isproxyAuthRequest ? "proxy" : form.password);
       formData.append("remember_me", String(form.remember));
 
       try {
