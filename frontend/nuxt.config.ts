@@ -217,8 +217,9 @@ export default defineNuxtConfig({
       suppressWarnings: true,
     },
     workbox: {
-      navigateFallback: "/",
-      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+      navigateFallback: "index.html",
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}", "index.html"],
+      globIgnores: ["404.html", "200.html"],
       cleanupOutdatedCaches: true,
       skipWaiting: true,
       clientsClaim: true,
